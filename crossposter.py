@@ -47,7 +47,13 @@ def http_form(url, params, headers=None):
 
 
 def fetch_feed():
-    with urllib.request.urlopen(FEED_URL, timeout=30) as r:
+    req = urllib.request.Request(
+        FEED_URL,
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+        },
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
         root = ET.fromstring(r.read())
     items = []
     for it in root.iter("item"):

@@ -1,0 +1,50 @@
+name: 90s Foodie cross-poster
+
+on:
+  schedule:
+    - cron: "17 * * * *"  # hourly, a few minutes past the hour
+  workflow_dispatch:  # allow manual runs from the Actions tab
+
+jobs:
+  crosspost:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Connect via Cloudflare WARP
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq wireguard-tools
+          WGCF_URL=$(curl -s https://api.github.com/ViRb3/wgcf/releases/latest | grep -o 'https://[^"]*linux_amd64[^"]*' | head -1)
+          curl -fsSL "$WGCF_URL" -o wgcf && chmod +x wgcf
+          ./wgcf register --accept-tos >/dev/null 2>&1
+          ./wgcf generate >/dev/null 2>&1
+          sudo install -m 600 wgcf-profile.conf /etc/wireguard/wgcf.conf
+          sudo wg-quick up wgcf
+          echo "--- egress check ---"
+          curl -s --max-time 20 https://www.cloudflare.com/cdn-cgi/trace | grep -E '^(ip|warp)=' || true
+
+      - name: Run cross-poster
+        env:
+          BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_OAUTH_TOKEN: ${{ secrets.TUMBLR_OAUTH_TOKEN }}
+          TUMBLR_OAUTH_SECRET: ${{ secrets.TUMBLR_OAUTH_SECRET }}
+          TUMBLR_BLOG: ${{ secrets.TUMBLR_BLOG }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: python3 crossposter.py
+
+      - name: Save posted state
+        run: |
+          git config user.name "90sfoodie-bot"
+          git config user.email "90sfoodie-bot@users.noreply.github.com"
+          git add posted.json
+          git diff --quiet --cached || git commit -m "Update posted state"
+          git push

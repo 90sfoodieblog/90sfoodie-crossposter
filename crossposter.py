@@ -26,7 +26,11 @@ from base64 import b64encode
 from datetime import datetime, timezone
 
 FEED_URL = "https://90sfoodie.substack.com/feed"
+ARCHIVE_API = "https://90sfoodie.substack.com/api/v1/archive?sort=new&limit=10&offset=0"
 STATE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posted.json")
+UA = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+}
 
 
 def http_json(url, data=None, headers=None, method=None):
@@ -47,12 +51,29 @@ def http_form(url, params, headers=None):
 
 
 def fetch_feed():
-    req = urllib.request.Request(
-        FEED_URL,
-        headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
-        },
-    )
+    """Try the Substack archive API first (JSON), fall back to RSS.
+    The post URL is the dedup key in both cases."""
+    try:
+        req = urllib.request.Request(ARCHIVE_API, headers=UA)
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.loads(r.read().decode())
+        items = []
+        for p in data:
+            url = (p.get("canonical_url") or "").strip()
+            title = (p.get("title") or "").strip()
+            if url and title:
+                items.append({
+                    "guid": url,
+                    "link": url,
+                    "title": title,
+                    "image": (p.get("cover_image") or "").strip(),
+                })
+        if items:
+            print(f"Feed source: archive API ({len(items)} posts)")
+            return items
+    except Exception as e:
+        print(f"Archive API failed: {e}")
+    req = urllib.request.Request(FEED_URL, headers=UA)
     with urllib.request.urlopen(req, timeout=30) as r:
         root = ET.fromstring(r.read())
     items = []

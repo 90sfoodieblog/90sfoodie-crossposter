@@ -28,9 +28,9 @@ from datetime import datetime, timezone
 FEED_URL = "https://90sfoodie.substack.com/feed"
 ARCHIVE_API = "https://90sfoodie.substack.com/api/v1/archive?sort=new&limit=10&offset=0"
 # (name, url, kind) — tried in order until one returns posts.
+# The workflow routes traffic through Cloudflare WARP so Substack's
+# datacenter-IP block does not apply.
 FEED_SOURCES = [
-    ("codetabs", "https://api.codetabs.com/v1/proxy?quest=" + urllib.parse.quote(FEED_URL, safe=""), "rss"),
-    ("corsproxy", "https://corsproxy.io/?url=" + urllib.parse.quote(FEED_URL, safe=""), "rss"),
     ("archive-api", ARCHIVE_API, "api"),
     ("rss-direct", FEED_URL, "rss"),
 ]

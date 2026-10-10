@@ -185,7 +185,8 @@ def post_instagram(title, link, image):
     return True
 
 
-def post_tumblr(title, link):    ck = os.environ.get("TUMBLR_CONSUMER_KEY")
+def post_tumblr(title, link):
+    ck = os.environ.get("TUMBLR_CONSUMER_KEY")
     cs = os.environ.get("TUMBLR_CONSUMER_SECRET")
     tok = os.environ.get("TUMBLR_OAUTH_TOKEN")
     ts = os.environ.get("TUMBLR_OAUTH_SECRET")

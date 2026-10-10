@@ -27,6 +27,13 @@ from datetime import datetime, timezone
 
 FEED_URL = "https://90sfoodie.substack.com/feed"
 ARCHIVE_API = "https://90sfoodie.substack.com/api/v1/archive?sort=new&limit=10&offset=0"
+# (name, url, kind) — tried in order until one returns posts.
+FEED_SOURCES = [
+    ("codetabs", "https://api.codetabs.com/v1/proxy?quest=" + urllib.parse.quote(FEED_URL, safe=""), "rss"),
+    ("corsproxy", "https://corsproxy.io/?url=" + urllib.parse.quote(FEED_URL, safe=""), "rss"),
+    ("archive-api", ARCHIVE_API, "api"),
+    ("rss-direct", FEED_URL, "rss"),
+]
 STATE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posted.json")
 UA = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
@@ -50,30 +57,16 @@ def http_form(url, params, headers=None):
         return json.loads(r.read().decode())
 
 
-def fetch_feed():
-    """Try the Substack archive API first (JSON), fall back to RSS.
-    The post URL is the dedup key in both cases."""
-    try:
-        req = urllib.request.Request(ARCHIVE_API, headers=UA)
-        with urllib.request.urlopen(req, timeout=30) as r:
-            data = json.loads(r.read().decode())
-        items = []
-        for p in data:
-            url = (p.get("canonical_url") or "").strip()
-            title = (p.get("title") or "").strip()
-            if url and title:
-                items.append({
-                    "guid": url,
-                    "link": url,
-                    "title": title,
-                    "image": (p.get("cover_image") or "").strip(),
-                })
-        if items:
-            print(f"Feed source: archive API ({len(items)} posts)")
-            return items
-    except Exception as e:
-        print(f"Archive API failed: {e}")
-    req = urllib.request.Request(FEED_URL, headers=UA)
+def feed_image(it):
+    for tag in ("{http://search.yahoo.com/mrss/}content", "enclosure"):
+        el = it.find(tag)
+        if el is not None and el.get("url"):
+            return el.get("url")
+    return ""
+
+
+def fetch_rss(url):
+    req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=30) as r:
         root = ET.fromstring(r.read())
     items = []
@@ -81,15 +74,39 @@ def fetch_feed():
         guid = (it.findtext("guid") or "").strip()
         link = (it.findtext("link") or "").strip()
         title = (it.findtext("title") or "").strip()
-        image = ""
-        for tag in ("{http://search.yahoo.com/mrss/}content", "enclosure"):
-            el = it.find(tag)
-            if el is not None and el.get("url"):
-                image = el.get("url")
-                break
-        if guid and link and title:
-            items.append({"guid": guid, "link": link, "title": title, "image": image})
+        if guid and title:
+            items.append({"guid": guid, "link": link or guid, "title": title,
+                          "image": feed_image(it)})
     return items
+
+
+def fetch_api(url):
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=30) as r:
+        data = json.loads(r.read().decode())
+    items = []
+    for p in data:
+        url_ = (p.get("canonical_url") or "").strip()
+        title = (p.get("title") or "").strip()
+        if url_ and title:
+            items.append({"guid": url_, "link": url_, "title": title,
+                          "image": (p.get("cover_image") or "").strip()})
+    return items
+
+
+def fetch_feed():
+    """Try each feed source in order until one returns posts."""
+    for name, url, kind in FEED_SOURCES:
+        try:
+            items = fetch_api(url) if kind == "api" else fetch_rss(url)
+            if items:
+                print(f"Feed source OK: {name} ({len(items)} posts)")
+                return items
+            print(f"Feed source {name}: no posts")
+        except Exception as e:
+            print(f"Feed source {name} failed: {e}")
+    print("All feed sources failed")
+    return []
 
 
 def load_state():

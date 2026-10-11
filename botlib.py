@@ -193,7 +193,8 @@ def post_bluesky_thread(texts):
     return True
 
 
-def _oauth1_header(url, params, consumer_key, consumer_secret, token, token_secret):
+def _oauth1_header(url, params, consumer_key, consumer_secret, token, token_secret,
+                 method="POST"):
     oauth = {
         "oauth_consumer_key": consumer_key,
         "oauth_token": token,
@@ -207,13 +208,23 @@ def _oauth1_header(url, params, consumer_key, consumer_secret, token, token_secr
         f"{urllib.parse.quote(k, safe='')}={urllib.parse.quote(str(v), safe='')}"
         for k, v in sorted(all_params.items())
     )
-    sig_base = "&".join(urllib.parse.quote(p, safe="") for p in ("POST", url, base))
+    sig_base = "&".join(urllib.parse.quote(p, safe="") for p in (method, url, base))
     key = f"{urllib.parse.quote(consumer_secret, safe='')}&{urllib.parse.quote(token_secret, safe='')}"
     sig = b64encode(hmac.new(key.encode(), sig_base.encode(), hashlib.sha1).digest()).decode()
     oauth["oauth_signature"] = sig
     return "OAuth " + ", ".join(
         f'{k}="{urllib.parse.quote(str(v), safe="")}"' for k, v in sorted(oauth.items())
     )
+
+
+def _rfc3986_body(params):
+    """Encode a POST body with RFC 3986 (%20 for space), matching the
+    OAuth signature encoding. urllib.parse.urlencode uses '+' for
+    spaces, which breaks signature verification on strict providers."""
+    return "&".join(
+        f"{urllib.parse.quote(k, safe='')}={urllib.parse.quote(str(v), safe='')}"
+        for k, v in sorted(params.items())
+    ).encode()
 
 
 def _tumblr_creds():
@@ -235,8 +246,8 @@ def post_tumblr_html(title, body_html):
     ck, cs, tok, ts, blog = creds
     url = f"https://api.tumblr.com/v2/blog/{blog}/post"
     params = {"type": "text", "title": title, "body": body_html}
-    auth = _oauth1_header(url, params, ck, cs, tok, ts)
-    body = urllib.parse.urlencode(params).encode()
+    auth = _oauth1_header(url, params, ck, cs, tok, ts, method="POST")
+    body = _rfc3986_body(params)
     req = urllib.request.Request(url, data=body, headers={"Authorization": auth})
     req.add_header("Content-Type", "application/x-www-form-urlencoded")
     def do_post():

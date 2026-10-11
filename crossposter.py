@@ -241,7 +241,10 @@ def post_tumblr(title, link):
     url = f"https://api.tumblr.com/v2/blog/{blog}/post"
     params = {"type": "text", "title": title, "body": f'<p><a href="{link}">{title}</a></p>\n<p>The 90s Foodie</p>'}
     auth = _oauth1_header(url, params, ck, cs, tok, ts)
-    body = urllib.parse.urlencode(params).encode()
+    body = "&".join(
+        f"{urllib.parse.quote(k, safe='')}={urllib.parse.quote(str(v), safe='')}"
+        for k, v in sorted(params.items())
+    ).encode()
     req = urllib.request.Request(url, data=body, headers={"Authorization": auth})
     req.add_header("Content-Type", "application/x-www-form-urlencoded")
     with urllib.request.urlopen(req, timeout=30) as r:

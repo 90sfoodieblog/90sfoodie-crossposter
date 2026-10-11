@@ -49,7 +49,7 @@ def main():
             raise RuntimeError("secrets missing")
         ck, cs, tok, ts, blog = creds
         url = f"https://api.tumblr.com/v2/blog/{blog}/info"
-        auth = botlib._oauth1_header(url, {}, ck, cs, tok, ts)
+        auth = botlib._oauth1_header(url, {}, ck, cs, tok, ts, method="GET")
         req = urllib.request.Request(url, headers={"Authorization": auth})
         with urllib.request.urlopen(req, timeout=30) as r:
             import json

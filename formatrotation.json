@@ -1,4 +1,5 @@
 {
   "q_idx": 1,
-  "last_format": "question"
+  "last_format": "fact",
+  "fact_idx": 1
 }

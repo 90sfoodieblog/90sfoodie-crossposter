@@ -7,6 +7,7 @@ import os
 import random
 import string
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from base64 import b64encode
@@ -19,13 +20,28 @@ UA = {
 ARCHIVE_API = "https://90sfoodie.substack.com/api/v1/archive?sort=new&limit=10&offset=0"
 
 
-def http_json(url, data=None, headers=None, method=None):
+def http_json(url, data=None, headers=None, method=None, timeout=30):
     body = json.dumps(data).encode() if data is not None else None
     req = urllib.request.Request(url, data=body, headers=headers or {}, method=method)
     if body:
         req.add_header("Content-Type", "application/json")
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read().decode())
+
+
+def _with_retries(fn, tries=4, base_delay=5, label="request"):
+    """Retry flaky network calls with exponential backoff."""
+    last = None
+    for i in range(tries):
+        try:
+            return fn()
+        except Exception as e:
+            last = e
+            print(f"{label}: attempt {i+1}/{tries} failed "
+                  f"({type(e).__name__}: {str(e)[:100]})")
+            if i < tries - 1:
+                time.sleep(base_delay * (2 ** i))
+    raise last
 
 
 def http_form(url, params, headers=None):
@@ -62,9 +78,13 @@ def _bsky_session():
     password = os.environ.get("BLUESKY_APP_PASSWORD")
     if not handle or not password:
         return None
-    sess = http_json(
-        "https://bsky.social/xrpc/com.atproto.server.createSession",
-        {"identifier": handle, "password": password},
+    sess = _with_retries(
+        lambda: http_json(
+            "https://bsky.social/xrpc/com.atproto.server.createSession",
+            {"identifier": handle, "password": password},
+            timeout=60,
+        ),
+        label="Bluesky session",
     )
     return sess
 
@@ -86,10 +106,15 @@ def post_bluesky_text(text):
             "createdAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         },
     }
-    res = http_json(
-        "https://bsky.social/xrpc/com.atproto.repo.createRecord",
-        record,
-        {"Authorization": f"Bearer {sess['accessJwt']}"},
+    res = _with_retries(
+        lambda: http_json(
+            "https://bsky.social/xrpc/com.atproto.repo.createRecord",
+            record,
+            {"Authorization": f"Bearer {sess['accessJwt']}"},
+            timeout=60,
+        ),
+        tries=3,
+        label="Bluesky post",
     )
     print(f"Bluesky: posted '{text[:60]}'")
     return res.get("uri"), res.get("cid")
@@ -116,10 +141,15 @@ def post_bluesky(title, link):
             },
         },
     }
-    http_json(
-        "https://bsky.social/xrpc/com.atproto.repo.createRecord",
-        record,
-        {"Authorization": f"Bearer {sess['accessJwt']}"},
+    _with_retries(
+        lambda: http_json(
+            "https://bsky.social/xrpc/com.atproto.repo.createRecord",
+            record,
+            {"Authorization": f"Bearer {sess['accessJwt']}"},
+            timeout=60,
+        ),
+        tries=3,
+        label="Bluesky post",
     )
     print(f"Bluesky: posted '{title}'")
     return True
@@ -143,10 +173,16 @@ def post_bluesky_thread(texts):
         }
         if parent_ref:
             rec["reply"] = {"root": root_ref, "parent": parent_ref}
-        res = http_json(
-            "https://bsky.social/xrpc/com.atproto.repo.createRecord",
-            {"repo": sess["did"], "collection": "app.bsky.feed.post", "record": rec},
-            auth,
+        res = _with_retries(
+            lambda: http_json(
+                "https://bsky.social/xrpc/com.atproto.repo.createRecord",
+                {"repo": sess["did"], "collection": "app.bsky.feed.post",
+                 "record": rec},
+                auth,
+                timeout=60,
+            ),
+            tries=3,
+            label=f"Bluesky thread post {i+1}",
         )
         ref = {"uri": res["uri"], "cid": res["cid"]}
         if root_ref is None:
@@ -203,8 +239,18 @@ def post_tumblr_html(title, body_html):
     body = urllib.parse.urlencode(params).encode()
     req = urllib.request.Request(url, data=body, headers={"Authorization": auth})
     req.add_header("Content-Type", "application/x-www-form-urlencoded")
-    with urllib.request.urlopen(req, timeout=30) as r:
-        json.loads(r.read().decode())
+    def do_post():
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return json.loads(r.read().decode())
+        except urllib.error.HTTPError as e:
+            try:
+                detail = e.read().decode()[:500]
+            except Exception:
+                detail = ""
+            print(f"Tumblr: HTTP {e.code} — {detail}")
+            raise
+    _with_retries(do_post, tries=3, label="Tumblr post")
     print(f"Tumblr: posted '{title}'")
     return True
 

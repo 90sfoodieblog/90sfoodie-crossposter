@@ -39,5 +39,46 @@
     "tumblr_followers": null,
     "tumblr_posts": 5,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-10-12",
+    "bsky_followers": 4,
+    "bsky_follows": 1,
+    "bsky_posts": 25,
+    "bsky_top_posts": [
+      {
+        "text": "Pepsi Blue: The Electric Blue Berry Soda That Defined 2002 (",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nPush Pop: Candy you could",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "In case you missed it earlier: M&M's Biscuit Bars: The 90s T",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "Evening rewind: Wonder Ball: The 90s Chocolate Treasure You ",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Dunkaroos were discontinued in the US in 2",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 24,
+    "tumblr_likes": 0
   }
 ]

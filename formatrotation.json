@@ -1,5 +1,6 @@
 {
   "q_idx": 1,
-  "last_format": "fact",
-  "fact_idx": 1
+  "last_format": "quote",
+  "fact_idx": 1,
+  "quote_idx": 1
 }

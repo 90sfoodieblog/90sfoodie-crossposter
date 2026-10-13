@@ -27,8 +27,12 @@ jobs:
         run: |
           git config user.name "90sfoodie-bot"
           git config user.email "90sfoodie-bot@users.noreply.github.com"
-          git add milestone.json
-          git diff --quiet --cached || git commit -m "Update milestone.py state"
-          git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+          if [ -f milestone.json ]; then
+            git add milestone.json
+            git diff --quiet --cached || git commit -m "Update milestone.py state"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          else
+            echo "No milestone state to save"
+          fi

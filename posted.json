@@ -25,5 +25,9 @@
   "https://90sfoodie.substack.com/p/pop-tarts-crunch-the-90s-cereal-that": true,
   "https://90sfoodie.substack.com/p/whopperrito-burger-kings-whopper": true,
   "https://90sfoodie.substack.com/p/oreo-sippers-the-cookie-straw-you": true,
-  "https://90sfoodie.substack.com/p/yoo-hoo-the-90s-chocolate-drink-you": true
+  "https://90sfoodie.substack.com/p/yoo-hoo-the-90s-chocolate-drink-you": true,
+  "https://90sfoodie.substack.com/p/hot-pockets-toaster-pizza-the-forgotten": {
+    "threads": true,
+    "tumblr": true
+  }
 }

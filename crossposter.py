@@ -298,24 +298,37 @@ def main():
     except Exception as e:
         print(f"Feed fetch failed: {e}")
         return
-    new_items = [it for it in items if it["guid"] not in state]
+    new_items = [it for it in items if state.get(it["guid"]) is not True]
     if not new_items:
         print("No new posts.")
         return
     for it in new_items:
-        ok = True
-        for poster in (post_bluesky, post_threads, post_tumblr):
+        # Per-platform memory (fix, 2026-10-14): remember which platforms
+        # already carried this post, so an hourly retry after a partial
+        # failure never re-posts a platform that already succeeded.
+        # (Before this, a Bluesky timeout after a Tumblr success marked
+        # nothing, and the next run posted the Tumblr copy a second time.)
+        rec = state.get(it["guid"])
+        if not isinstance(rec, dict):
+            rec = {}
+        for name, poster in (("bluesky", post_bluesky),
+                             ("threads", post_threads),
+                             ("tumblr", post_tumblr)):
+            if rec.get(name):
+                continue
             try:
                 poster(it["title"], it["link"])
+                rec[name] = True
             except Exception as e:
                 print(f"{poster.__name__} failed: {e}")
-                ok = False
         try:
             post_instagram(it["title"], it["link"], it.get("image", ""))
         except Exception as e:
             print(f"post_instagram failed: {e}")
-        if ok:
+        if all(rec.get(k) for k in ("bluesky", "threads", "tumblr")):
             state[it["guid"]] = True
+        else:
+            state[it["guid"]] = rec
     save_state(state)
 
 

@@ -346,7 +346,7 @@ def post_tumblr_html(title, body_html):
                 detail = ""
             print(f"Tumblr: HTTP {e.code} — {detail}")
             raise
-    _with_retries(do_post, tries=3, label="Tumblr post")
+    _with_retries(do_post, tries=3, base_delay=20, label="Tumblr post")
     print(f"Tumblr: posted '{title}'")
     return True
 

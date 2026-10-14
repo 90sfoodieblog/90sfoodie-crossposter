@@ -46,6 +46,50 @@ def archive_link_for(post_url):
     return None
 
 
+BLOG_HOME = "https://90sfoodie.substack.com"
+SITE_HOME = "https://90sfoodie.com"
+
+
+def _promo_text(text):
+    """Guarantee dual promotion (Dee, 2026-10-14): every bot post carries
+    the blog link AND the website link.
+    - Text already mentioning 90sfoodie.com: unchanged.
+    - Contains a Substack post URL: append that post's archive-page link.
+    - Otherwise: append the blog + archive home links.
+    Appends only when the result fits the 280-char budget."""
+    if "90sfoodie.com" in text:
+        return text
+    import re
+    m = re.search(r"https://90sfoodie\.substack\.com/p/[^\s\"'<>]+", text)
+    if m:
+        arch = archive_link_for(m.group(0))
+        if arch:
+            for suffix in (f"\n\n\U0001F4E6 In the archive: {arch}",
+                           f"\n\U0001F4E6 {arch}"):
+                if len(text) + len(suffix) <= 280:
+                    return text + suffix
+        return text
+    suffix = f"\n\n\U0001F4D6 {BLOG_HOME}\n\U0001F4E6 {SITE_HOME}"
+    if len(text) + len(suffix) <= 280:
+        return text + suffix
+    return text
+
+
+def _promo_html(body):
+    """HTML twin of _promo_text for Tumblr bodies (no length cap)."""
+    if "90sfoodie.com" in body:
+        return body
+    import re
+    m = re.search(r"https://90sfoodie\.substack\.com/p/[^\s\"'<>]+", body)
+    if m:
+        arch = archive_link_for(m.group(0))
+        if arch:
+            return body + (f'\n<p>\U0001F4E6 In the archive: '
+                           f'<a href="{arch}">this snack in the 90s Foodie archive</a></p>')
+    return body + (f'\n<p>\U0001F4D6 <a href="{BLOG_HOME}">The 90s Foodie blog</a>'
+                   f' &middot; \U0001F4E6 <a href="{SITE_HOME}">The snack archive</a></p>')
+
+
 
 def http_json(url, data=None, headers=None, method=None, timeout=30):
     body = json.dumps(data).encode() if data is not None else None
@@ -118,6 +162,7 @@ def _bsky_session():
 
 def post_bluesky_text(text):
     """Post arbitrary text to Bluesky. Returns (uri, cid) or None if skipped."""
+    text = _promo_text(text)
     sess = _bsky_session()
     if not sess:
         print("Bluesky: secrets missing, skipped")
@@ -190,6 +235,12 @@ def post_bluesky(title, link):
 
 def post_bluesky_thread(texts):
     """Post a reply-chain thread. texts[0] is the root post."""
+    if texts and not any("90sfoodie.com" in x for x in texts):
+        enriched = _promo_text(texts[-1])
+        if "90sfoodie.com" in enriched:
+            texts = texts[:-1] + [enriched]
+        else:
+            texts = texts + [f"\U0001F4D6 Blog: {BLOG_HOME}\n\U0001F4E6 Archive: {SITE_HOME}"]
     sess = _bsky_session()
     if not sess:
         print("Bluesky: secrets missing, skipped")
@@ -277,6 +328,7 @@ def post_tumblr_html(title, body_html):
         print("Tumblr: secrets missing, skipped")
         return False
     ck, cs, tok, ts, blog = creds
+    body_html = _promo_html(body_html)
     url = f"https://api.tumblr.com/v2/blog/{blog}/post"
     params = {"type": "text", "title": title, "body": body_html}
     auth = _oauth1_header(url, params, ck, cs, tok, ts, method="POST")

@@ -1,0 +1,26 @@
+name: Activity digest
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run activity digest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 activitydigest.py
+      - name: Save bot state
+        run: |
+          git config user.name "90sfoodie-bot"
+          git config user.email "90sfoodie-bot@users.noreply.github.com"
+          [ -f activity_digest.md ] && git add activity_digest.md || true
+          git diff --quiet --cached || git commit -m "Update activitydigest.py state"
+          git push

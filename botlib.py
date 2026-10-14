@@ -19,6 +19,33 @@ UA = {
 }
 ARCHIVE_API = "https://90sfoodie.substack.com/api/v1/archive?sort=new&limit=10&offset=0"
 
+SITE_SNACKS_URL = "https://90sfoodie.com/data/snacks.json"
+_archive_cache = None
+
+
+def archive_link_for(post_url):
+    """Return the 90sfoodie.com archive URL for a Substack post, or None.
+
+    Matches the post URL against the 'substack' field of the site's
+    snacks.json (the single source of truth). Never raises — if the
+    site is unreachable or the post has no archive entry yet, the
+    caller just posts the Substack link as before.
+    """
+    global _archive_cache
+    try:
+        if _archive_cache is None:
+            req = urllib.request.Request(SITE_SNACKS_URL, headers=UA)
+            with urllib.request.urlopen(req, timeout=20) as r:
+                _archive_cache = json.loads(r.read().decode())
+        target = (post_url or "").rstrip("/")
+        for s in _archive_cache:
+            if (s.get("substack") or "").rstrip("/") == target and s.get("slug"):
+                return f"https://90sfoodie.com/archive/{s['slug']}.html"
+    except Exception as e:
+        print(f"archive lookup failed: {e}")
+    return None
+
+
 
 def http_json(url, data=None, headers=None, method=None, timeout=30):
     body = json.dumps(data).encode() if data is not None else None
@@ -122,12 +149,18 @@ def post_bluesky_text(text):
 
 def post_bluesky(title, link):
     text = f"{title}\n\n{link}"
+    arch = archive_link_for(link)
+    if arch:
+        text += f"\n\n\U0001F4E6 In the archive: {arch}"
     sess = _bsky_session()
     if not sess:
         print("Bluesky: secrets missing, skipped")
         return False
     if len(text) > 280:
-        text = title[: 277 - len(link)] + "...\n\n" + link
+        # The story link always wins: drop the archive line first.
+        text = f"{title}\n\n{link}"
+        if len(text) > 280:
+            text = title[: 277 - len(link)] + "...\n\n" + link
     record = {
         "repo": sess["did"],
         "collection": "app.bsky.feed.post",
@@ -267,8 +300,13 @@ def post_tumblr_html(title, body_html):
 
 
 def post_tumblr(title, link):
+    arch = archive_link_for(link)
+    extra = (
+        f'\n<p>\U0001F4E6 In the archive: <a href="{arch}">this snack in the 90s Foodie archive</a></p>'
+        if arch else ""
+    )
     return post_tumblr_html(
-        title, f'<p><a href="{link}">{title}</a></p>\n<p>The 90s Foodie</p>'
+        title, f'<p><a href="{link}">{title}</a></p>\n<p>The 90s Foodie</p>{extra}'
     )
 
 

@@ -35,6 +35,33 @@ FEED_SOURCES = [
     ("rss-direct", FEED_URL, "rss"),
 ]
 STATE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posted.json")
+
+SITE_SNACKS_URL = "https://90sfoodie.com/data/snacks.json"
+_archive_cache = None
+
+
+def archive_link_for(post_url):
+    """Return the 90sfoodie.com archive URL for a Substack post, or None.
+
+    Matches the post URL against the 'substack' field of the site's
+    snacks.json (the single source of truth). Never raises — if the
+    site is unreachable or the post has no archive entry yet, the
+    caller just posts the Substack link as before.
+    """
+    global _archive_cache
+    try:
+        if _archive_cache is None:
+            req = urllib.request.Request(SITE_SNACKS_URL, headers=UA)
+            with urllib.request.urlopen(req, timeout=20) as r:
+                _archive_cache = json.loads(r.read().decode())
+        target = (post_url or "").rstrip("/")
+        for s in _archive_cache:
+            if (s.get("substack") or "").rstrip("/") == target and s.get("slug"):
+                return f"https://90sfoodie.com/archive/{s['slug']}.html"
+    except Exception as e:
+        print(f"archive lookup failed: {e}")
+    return None
+
 UA = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
 }
@@ -133,8 +160,14 @@ def post_bluesky(title, link):
         {"identifier": handle, "password": password},
     )
     text = f"{title}\n\n{link}"
+    arch = archive_link_for(link)
+    if arch:
+        text += f"\n\n\U0001F4E6 In the archive: {arch}"
     if len(text) > 280:
-        text = title[: 277 - len(link)] + "...\n\n" + link
+        # The story link always wins: drop the archive line first.
+        text = f"{title}\n\n{link}"
+        if len(text) > 280:
+            text = title[: 277 - len(link)] + "...\n\n" + link
     record = {
         "repo": sess["did"],
         "collection": "app.bsky.feed.post",
@@ -239,7 +272,12 @@ def post_tumblr(title, link):
         print("Tumblr: secrets missing, skipped")
         return False
     url = f"https://api.tumblr.com/v2/blog/{blog}/post"
-    params = {"type": "text", "title": title, "body": f'<p><a href="{link}">{title}</a></p>\n<p>The 90s Foodie</p>'}
+    arch = archive_link_for(link)
+    extra = (
+        f'\n<p>\U0001F4E6 In the archive: <a href="{arch}">this snack in the 90s Foodie archive</a></p>'
+        if arch else ""
+    )
+    params = {"type": "text", "title": title, "body": f'<p><a href="{link}">{title}</a></p>\n<p>The 90s Foodie</p>{extra}'}
     auth = _oauth1_header(url, params, ck, cs, tok, ts)
     body = "&".join(
         f"{urllib.parse.quote(k, safe='')}={urllib.parse.quote(str(v), safe='')}"

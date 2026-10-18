@@ -285,5 +285,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 97,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-10-18",
+    "bsky_followers": 6,
+    "bsky_follows": 1,
+    "bsky_posts": 94,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nSweetTarts: Sour then swe",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: Doritos 3D Cheetos Asteroids And\n\nhttps",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nRunts: Banana ones tast",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: Doritos 3D Cheetos Asteroids And\n\nhttps",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "Full story on the blog:\n\nhttps://90sfoodie.substack.com/p/tr",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 104,
+    "tumblr_likes": 0
   }
 ]

@@ -326,5 +326,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 104,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-10-19",
+    "bsky_followers": 6,
+    "bsky_follows": 1,
+    "bsky_posts": 109,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nLaffy Taffy: Jokes on the",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\u2022 Hot Pockets Toaster Pizza: The Forgotten 90s Freezer Snack",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\u2022 Remember These Cans? The 90s Character Pastas That Turned ",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1
+      },
+      {
+        "text": "\u2022 Remember Butterfinger Ice Cream Nuggets? The 90s Freezer T",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1
+      },
+      {
+        "text": "\u2022 Remember Cow and Chicken Puffs? The Cartoon Cereal That Va",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 111,
+    "tumblr_likes": 0
   }
 ]

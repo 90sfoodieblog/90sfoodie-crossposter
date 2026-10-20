@@ -367,5 +367,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 111,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-10-20",
+    "bsky_followers": 6,
+    "bsky_follows": 1,
+    "bsky_posts": 114,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nTootsie Pop: How many lic",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nJolly Rancher: Watermel",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "Settle it: which was better \u2014 Remember or Kahuna?\n\nhttps://9",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcac Push Pop or Ring Pop? Defend your choice.\n\n\ud83d\udcd6 https://90sfo",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (morning edition)\n\nNow and Later: Chewy enou",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 116,
+    "tumblr_likes": 0
   }
 ]

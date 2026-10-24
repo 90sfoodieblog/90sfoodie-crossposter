@@ -531,5 +531,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 136,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-10-24",
+    "bsky_followers": 6,
+    "bsky_follows": 1,
+    "bsky_posts": 141,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nSour Patch Kids: First th",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: French Toast Crunch The Tiny Toast\n\nhtt",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nRed Vines: The Twizzler",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "Settle it: which was better \u2014 Waffle or Crisp:?\n\nhttps://90s",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcad From the blog: \u201cFor one brief, beautiful moment, Kellogg's",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 142,
+    "tumblr_likes": 0
   }
 ]

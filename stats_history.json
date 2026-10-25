@@ -572,5 +572,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 142,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-10-25",
+    "bsky_followers": 6,
+    "bsky_follows": 1,
+    "bsky_posts": 154,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nGummy Worms: Sour ones ma",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcad From the blog: \u201cBefore the Bites and the BB's, Nestle hid ",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nGummy Bears: Haribo gol",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcac Was Crystal Pepsi actually good, or was it just the novelt",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcd6 Blog: https://90sfoodie.substack.com\n\ud83d\udce6 Archive: https://90",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 149,
+    "tumblr_likes": 0
   }
 ]

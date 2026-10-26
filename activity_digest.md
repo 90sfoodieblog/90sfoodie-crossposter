@@ -1,10 +1,10 @@
-# Bot activity digest — week 2026-W43
+# Bot activity digest — week 2026-W44
 
 ## Workflow runs (last 100)
-- **90s Foodie cross-poster**: 63 runs, 61 ok, 2 failed
+- **90s Foodie cross-poster**: 63 runs, 62 ok, 1 failed
 - **Activity digest**: 1 runs, 0 ok, 0 failed
 - **Debate bot**: 1 runs, 1 ok, 0 failed
-- **Format-rotation bot**: 6 runs, 2 ok, 4 failed
+- **Format-rotation bot**: 6 runs, 6 ok, 0 failed
 - **Milestone bot**: 3 runs, 3 ok, 0 failed
 - **Seasonal bot**: 3 runs, 3 ok, 0 failed
 - **Second-wave bot**: 2 runs, 2 ok, 0 failed

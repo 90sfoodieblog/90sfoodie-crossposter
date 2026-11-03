@@ -941,5 +941,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 195,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-03",
+    "bsky_followers": 7,
+    "bsky_follows": 1,
+    "bsky_posts": 221,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nCap'n Crunch: Roof-of-mou",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nApple Jacks: They don't",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "Settle it: which was better \u2014 Waffle or Crisp:?\n\nhttps://90s",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcad From the blog: \u201cNabisco turned an Oreo into a straw, and a",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (morning edition)\n\nFroot Loops: Follow your ",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 200,
+    "tumblr_likes": 0
   }
 ]

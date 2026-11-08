@@ -1146,5 +1146,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 223,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-08",
+    "bsky_followers": 7,
+    "bsky_follows": 1,
+    "bsky_posts": 251,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nFritos: Scoops were built",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcac Did anyone actually like the corn in Kid Cuisine? Be hones",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nRuffles: Ridges for the",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Squeezit bottles had twist-off tops you we",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (morning edition)\n\nPringles: Once you pop...",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 228,
+    "tumblr_likes": 0
   }
 ]

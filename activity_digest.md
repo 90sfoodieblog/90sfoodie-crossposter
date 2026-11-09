@@ -1,24 +1,24 @@
-# Bot activity digest — week 2026-W45
+# Bot activity digest — week 2026-W46
 
 ## Workflow runs (last 100)
-- **90s Foodie cross-poster**: 63 runs, 63 ok, 0 failed
+- **90s Foodie cross-poster**: 63 runs, 61 ok, 2 failed
 - **Activity digest**: 1 runs, 0 ok, 0 failed
 - **Debate bot**: 1 runs, 1 ok, 0 failed
-- **Format-rotation bot**: 6 runs, 4 ok, 2 failed
+- **Format-rotation bot**: 6 runs, 3 ok, 3 failed
 - **Milestone bot**: 3 runs, 3 ok, 0 failed
 - **Seasonal bot**: 3 runs, 3 ok, 0 failed
 - **Second-wave bot**: 2 runs, 2 ok, 0 failed
 - **Snack o'clock bot**: 8 runs, 8 ok, 0 failed
 - **Snack-news watcher**: 3 runs, 3 ok, 0 failed
 - **Stats collector**: 3 runs, 3 ok, 0 failed
-- **Story-thread bot**: 1 runs, 0 ok, 1 failed
+- **Story-thread bot**: 1 runs, 1 ok, 0 failed
 - **Teaser bot**: 1 runs, 1 ok, 0 failed
-- **Thread scout**: 3 runs, 3 ok, 0 failed
-- **Throwback bot**: 1 runs, 0 ok, 1 failed
+- **Thread scout**: 3 runs, 2 ok, 1 failed
+- **Throwback bot**: 1 runs, 1 ok, 0 failed
 - **Weekend roundup bot**: 1 runs, 1 ok, 0 failed
 
 ## Latest stats
-- Bluesky followers: 6, Tumblr followers: 2
+- Bluesky followers: 7, Tumblr followers: 2
 
 ## Thread scout
 - 0 candidate threads in latest scout

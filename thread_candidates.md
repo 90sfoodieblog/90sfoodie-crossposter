@@ -1,3 +1,3 @@
-# Thread candidates — 2026-11-10
+# Thread candidates — 2026-11-11
 
 No matching threads found today.

@@ -1392,5 +1392,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 247,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-14",
+    "bsky_followers": 7,
+    "bsky_follows": 1,
+    "bsky_posts": 282,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nPush Pop: Candy you could",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Push Pops debuted in the mid-80s but peake",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: Chick Fil A Pretzel Cheddar Club\n\nhttps",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nGushers: Bite it and it",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nDunkaroos: Frosting for d",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 251,
+    "tumblr_likes": 0
   }
 ]

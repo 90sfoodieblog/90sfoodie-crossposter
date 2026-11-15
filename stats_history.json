@@ -1433,5 +1433,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 251,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-15",
+    "bsky_followers": 7,
+    "bsky_follows": 1,
+    "bsky_posts": 290,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nSurge: Fully loaded citru",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Baby Bottle Pop launched in 1998 \u2014 dip the",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nEcto Cooler: Hi-C's green",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: When Burgers Were Bigger A Tribute\n\nhtt",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nWarheads: The sour chal",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 256,
+    "tumblr_likes": 0
   }
 ]

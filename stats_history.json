@@ -1515,5 +1515,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 260,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-17",
+    "bsky_followers": 7,
+    "bsky_follows": 1,
+    "bsky_posts": 297,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nSqueezit: Twist the top, ",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Fun Dip's stick was originally called Lik-",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nOrbitz: Soda with floatin",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nJosta: The first energy d",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcac Ecto Cooler: top-tier drink or overhyped green sugar water",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 262,
+    "tumblr_likes": 0
   }
 ]

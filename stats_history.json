@@ -1597,5 +1597,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 266,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-19",
+    "bsky_followers": 8,
+    "bsky_follows": 1,
+    "bsky_posts": 303,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nBaby Bottle Pop: Dip the ",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nSqueeze Pops: Liquid ca",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nYoo-hoo: Chocolate drink ",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: Crunch In Three Dimensions The Return\n\n",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nKool-Aid Bursts: The bo",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 268,
+    "tumblr_likes": 0
   }
 ]

@@ -1638,5 +1638,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 268,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-20",
+    "bsky_followers": 9,
+    "bsky_follows": 1,
+    "bsky_posts": 306,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nLick-A-Stix: Wait \u2014 no, t",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Pixy Stix started as a drink mix in the 19",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nRing Pop: Jewelry you c",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nBaby Bottle Pop: Dip the ",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nSqueeze Pops: Liquid ca",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 270,
+    "tumblr_likes": 0
   }
 ]

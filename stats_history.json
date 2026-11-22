@@ -1720,5 +1720,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 272,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-22",
+    "bsky_followers": 9,
+    "bsky_follows": 1,
+    "bsky_posts": 314,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nRunts: Banana ones tasted",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Warheads were imported from Taiwan and bec",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: Wendys Chicken Cordon Bleu Sandwich\n\nht",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nNerds: Two flavors in o",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nPixy Stix: Paper straws o",
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 276,
+    "tumblr_likes": 0
   }
 ]

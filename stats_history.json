@@ -1761,5 +1761,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 276,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-24",
+    "bsky_followers": 9,
+    "bsky_follows": 1,
+    "bsky_posts": 318,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nSmarties: Canadian Smarti",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: Jack In The Box Bacon Cheddar Potato\n\nh",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (afternoon edition)\n\nSweetTarts: Sour then s",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nRunts: Banana ones tasted",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Warheads were imported from Taiwan and bec",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 279,
+    "tumblr_likes": 0
   }
 ]

@@ -1802,5 +1802,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 280,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-25",
+    "bsky_followers": 9,
+    "bsky_follows": 1,
+    "bsky_posts": 327,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nNow and Later: Chewy enou",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Airheads launched in 1985 but hit peak pla",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nLaffy Taffy: Jokes on the",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "Throwback to this one: Tripledeckeroni The Pizza Wrapped\n\nht",
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Airheads launched in 1985 but hit peak pla",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 284,
+    "tumblr_likes": 0
   }
 ]

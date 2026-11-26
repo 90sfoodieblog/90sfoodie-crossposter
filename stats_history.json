@@ -1843,5 +1843,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 284,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-26",
+    "bsky_followers": 9,
+    "bsky_follows": 1,
+    "bsky_posts": 330,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nTootsie Pop: How many lic",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: The Reeses Crunchy Cookie Cup The\n\nhttp",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nJolly Rancher: Watermelon",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nNow and Later: Chewy enou",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Airheads launched in 1985 but hit peak pla",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 287,
+    "tumblr_likes": 0
   }
 ]

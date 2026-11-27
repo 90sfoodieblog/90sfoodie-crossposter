@@ -1884,5 +1884,46 @@
     "tumblr_followers": 2,
     "tumblr_posts": 287,
     "tumblr_likes": 0
+  },
+  {
+    "date": "2026-11-27",
+    "bsky_followers": 9,
+    "bsky_follows": 1,
+    "bsky_posts": 333,
+    "bsky_top_posts": [
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nCharleston Chew: Freeze i",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udcfc 90s snack fact: Tootsie Pops have been around since 1931 \u2014",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nBlow Pop: Gum in the midd",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd59 Snack o'clock (evening edition)\n\nTootsie Pop: How many lic",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      {
+        "text": "\ud83d\udd01 From the archives: The Reeses Crunchy Cookie Cup The\n\nhttp",
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    ],
+    "tumblr_followers": 2,
+    "tumblr_posts": 289,
+    "tumblr_likes": 0
   }
 ]
